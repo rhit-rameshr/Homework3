@@ -1,0 +1,179 @@
+@startuml
+title HW3 Guitar Inventory System - Class Diagram
+
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+
+package "main.java.hw3" {
+
+  '=====================
+  ' Core Domain Classes
+  '=====================
+  class Inventory {
+    - guitars: Map<String, Guitar>
+    - iterator: Iterator<Map.Entry<String, Guitar>>
+    + Inventory()
+    + clear(): void
+    + addGuitar(serialNumber: String, price: double, spec: GuitarSpec): void
+    + removeGuitar(serialNumber: String): Guitar
+    + getGuitar(serialNumber: String): Guitar
+    + search(searchSpec: GuitarSpec): Set<Guitar>
+    + toString(): String
+    + getSize(): int
+    + initializeIterator(): void
+    + getNextGuitar(): Guitar
+  }
+
+  class Guitar {
+    - serialNumber: String
+    - price: double
+    - spec: GuitarSpec
+    + Guitar(serialNumber: String, price: double, spec: GuitarSpec)
+    + getSerialNumber(): String
+    + getPrice(): double
+    + setPrice(newPrice: float): void
+    + getSpec(): GuitarSpec
+    + toString(): String
+  }
+
+  class GuitarSpec {
+    - builder: Builder
+    - model: String
+    - type: Type
+    - numStrings: int
+    - backWood: Wood
+    - topWood: Wood
+    + GuitarSpec(builder: Builder, model: String, type: Type, numStrings: int, backWood: Wood, topWood: Wood)
+    + getBuilder(): Builder
+    + getModel(): String
+    + getType(): Type
+    + getNumStrings(): int
+    + getBackWood(): Wood
+    + getTopWood(): Wood
+    + matches(otherSpec: GuitarSpec): boolean
+    + toString(): String
+  }
+
+  '=====================
+  ' Enumerations
+  '=====================
+  enum Builder {
+    FENDER
+    MARTIN
+    GIBSON
+    COLLINGS
+    OLSON
+    RYAN
+    PRS
+    ANY
+    --
+    - printName: String
+    {static} + fromString(text: String): Builder
+    + toString(): String
+  }
+
+  enum Type {
+    ACOUSTIC
+    ELECTRIC
+    ANY
+    --
+    - printName: String
+    {static} + fromString(text: String): Type
+    + toString(): String
+  }
+
+  enum Wood {
+    INDIAN_ROSEWOOD
+    BRAZILIAN_ROSEWOOD
+    MAHOGANY
+    MAPLE
+    COCOBOLO
+    CEDAR
+    ADIRONDACK
+    ALDER
+    SITKA
+    ANY
+    --
+    - printName: String
+    {static} + fromString(text: String): Wood
+    + toString(): String
+  }
+
+  '=====================
+  ' Data I/O Utilities
+  '=====================
+  class Loader {
+    - hasNextLine: boolean
+    - reader: BufferedReader
+    ~ nextLine: String
+    + Loader(dataFileName: String, directoryName: String) throws IOException
+    + hasNext(): boolean
+    + next(): String
+    + getNextLine(): boolean
+  }
+
+  class Saver {
+    ~ writer: BufferedWriter
+    + Saver(dataFileName: String, directoryName: String)
+    + writeNext(data: String): boolean
+    + closeSaver(): boolean
+  }
+
+  '=================================
+  ' Inventory Load/Save Coordinators
+  '=================================
+  class InventoryLoader {
+    {static} + loadInventory(inventory: Inventory, loader: Loader): void
+  }
+
+  class InventorySaver {
+    {static} + saveInventory(inventory: Inventory, saver: Saver): void
+  }
+
+  '=====================
+  ' Console/Test Driver
+  '=====================
+  class GuitarInventoryTester {
+    ~ whatErinLikes: GuitarSpec
+    - runTest(inventory: Inventory): void
+    - initializeInventory(inventory: Inventory, dataFileName: String, directoryName: String): void
+    - runApp(): void
+    + main(args: String[]): void
+    - showMatchingGuitars(userName: String, inventory: Inventory, whatCustomerLikes: GuitarSpec): void
+  }
+
+}
+
+'=====================
+' Relationships
+'=====================
+Inventory "1" o-- "*" Guitar : guitars
+Guitar "1" --> "1" GuitarSpec : spec
+
+GuitarSpec --> Builder
+GuitarSpec --> Type
+GuitarSpec --> Wood
+
+InventoryLoader ..> Inventory
+InventoryLoader ..> Loader
+InventoryLoader ..> GuitarSpec
+InventoryLoader ..> Builderm
+InventoryLoader ..> Type
+InventoryLoader ..> Wood
+
+InventorySaver ..> Inventory
+InventorySaver ..> Saver
+InventorySaver ..> Guitar
+InventorySaver ..> GuitarSpec
+
+GuitarInventoryTester ..> Inventory
+GuitarInventoryTester ..> Loader
+GuitarInventoryTester ..> Saver
+GuitarInventoryTester ..> InventoryLoader
+GuitarInventoryTester ..> InventorySaver
+GuitarInventoryTester ..> GuitarSpec
+GuitarInventoryTester ..> Builder
+GuitarInventoryTester ..> Type
+GuitarInventoryTester ..> Wood
+
+@enduml

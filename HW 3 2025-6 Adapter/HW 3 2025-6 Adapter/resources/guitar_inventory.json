@@ -1,0 +1,114 @@
+{
+  "inventory": [
+    {
+      "serialNumber": "11277",
+      "price": 3999.95,
+      "builder": "COLLINGS",
+      "model": "CJ",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 6,
+      "backWood": "INDIAN_ROSEWOOD",
+      "topWood": "SITKA"
+    },
+    {
+      "serialNumber": "V95693",
+      "price": 1499.95,
+      "builder": "FENDER",
+      "model": "Stratocastor",
+      "guitarType": "ELECTRIC",
+      "numStrings": 6,
+      "backWood": "ALDER",
+      "topWood": "ALDER"
+    },
+    {
+      "serialNumber": "V9512",
+      "price": 1549.95,
+      "builder": "FENDER",
+      "model": "Stratocastor",
+      "guitarType": "ELECTRIC",
+      "numStrings": 6,
+      "backWood": "ALDER",
+      "topWood": "ALDER"
+    },
+    {
+      "serialNumber": "122784",
+      "price": 5495.95,
+      "builder": "MARTIN",
+      "model": "D-18",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 6,
+      "backWood": "MAHOGANY",
+      "topWood": "ADIRONDACK"
+    },
+    {
+      "serialNumber": "76531",
+      "price": 6295.95,
+      "builder": "MARTIN",
+      "model": "OM-28",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 6,
+      "backWood": "BRAZILIAN_ROSEWOOD",
+      "topWood": "ADIRONDACK"
+    },
+    {
+      "serialNumber": "70108276",
+      "price": 2295.95,
+      "builder": "GIBSON",
+      "model": "Les Paul",
+      "guitarType": "ELECTRIC",
+      "numStrings": 6,
+      "backWood": "MAHOGANY",
+      "topWood": "MAHOGANY"
+    },
+    {
+      "serialNumber": "82765501",
+      "price": 1890.95,
+      "builder": "GIBSON",
+      "model": "SG '61 Reissue",
+      "guitarType": "ELECTRIC",
+      "numStrings": 6,
+      "backWood": "MAHOGANY",
+      "topWood": "MAHOGANY"
+    },
+    {
+      "serialNumber": "77023",
+      "price": 6275.95,
+      "builder": "MARTIN",
+      "model": "D-28",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 6,
+      "backWood": "BRAZILIAN_ROSEWOOD",
+      "topWood": "ADIRONDACK"
+    },
+    {
+      "serialNumber": "1092",
+      "price": 12995.95,
+      "builder": "OLSON",
+      "model": "SJ",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 12,
+      "backWood": "INDIAN_ROSEWOOD",
+      "topWood": "CEDAR"
+    },
+    {
+      "serialNumber": "566-62",
+      "price": 8999.95,
+      "builder": "RYAN",
+      "model": "Cathedral",
+      "guitarType": "ACOUSTIC",
+      "numStrings": 12,
+      "backWood": "COCOBOLO",
+      "topWood": "CEDAR"
+    },
+    {
+      "serialNumber": "6 29584",
+      "price": 2100.95,
+      "builder": "PRS",
+      "model": "Dave Navarro Signature",
+      "guitarType": "ELECTRIC",
+      "numStrings": 6,
+      "backWood": "MAHOGANY",
+      "topWood": "MAPLE"
+    }
+  ]
+}
