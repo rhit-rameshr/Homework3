@@ -1,5 +1,5 @@
 @startuml
-title HW3 Guitar Inventory System - Class Diagram
+title HW3 Guitar Inventory System - Class Diagram (with JSON Adapter)
 
 skinparam packageStyle rectangle
 skinparam classAttributeIconSize 0
@@ -99,8 +99,21 @@ package "main.java.hw3" {
     + toString(): String
   }
 
+  '=========================================
+  ' Target Interfaces
+  '=========================================
+  interface DataLoader {
+    + hasNext(): boolean
+    + next(): String
+  }
+
+  interface DataSaver {
+    + writeNext(data: String): boolean
+    + closeSaver(): boolean
+  }
+
   '=====================
-  ' Data I/O Utilities
+  ' Saver and Loader
   '=====================
   class Loader {
     - hasNextLine: boolean
@@ -123,11 +136,58 @@ package "main.java.hw3" {
   ' Inventory Load/Save Coordinators
   '=================================
   class InventoryLoader {
-    {static} + loadInventory(inventory: Inventory, loader: Loader): void
+    {static} + loadInventory(inventory: Inventory, loader: DataLoader): void
   }
 
   class InventorySaver {
-    {static} + saveInventory(inventory: Inventory, saver: Saver): void
+    {static} + saveInventory(inventory: Inventory, saver: DataSaver): void
+  }
+
+  '=================================
+  ' JSON Reader/Writer
+  '=================================
+  class JsonInventoryReader {
+    + JsonInventoryReader(jsonFileName: String, directoryName: String) throws IOException
+    + readAllGuitars(): List<JsonGuitarRecord>
+  }
+
+  class JsonInventoryWriter {
+    + JsonInventoryWriter(jsonFileName: String, directoryName: String) throws IOException
+    + writeAllGuitars(records: List<JsonGuitarRecord>): boolean
+  }
+
+  class JsonGuitarRecord {
+    + serialNumber: String
+    + price: double
+    + builder: String
+    + model: String
+    + type: String
+    + numStrings: int
+    + backWood: String
+    + topWood: String
+  }
+
+  '=================================
+  ' Adapters
+  '=================================
+  class JsonLoaderAdapter {
+    - reader: JsonInventoryReader
+    - records: List<JsonGuitarRecord>
+    - recordIndex: int
+    - fieldIndex: int
+    + JsonLoaderAdapter(jsonFileName: String, directoryName: String) throws IOException
+    + hasNext(): boolean
+    + next(): String
+  }
+
+  class JsonSaverAdapter {
+    - writer: JsonInventoryWriter
+    - outRecords: List<JsonGuitarRecord>
+    - current: JsonGuitarRecord
+    - fieldIndex: int
+    + JsonSaverAdapter(jsonFileName: String, directoryName: String) throws IOException
+    + writeNext(data: String): boolean
+    + closeSaver(): boolean
   }
 
   '=====================
@@ -141,36 +201,53 @@ package "main.java.hw3" {
     + main(args: String[]): void
     - showMatchingGuitars(userName: String, inventory: Inventory, whatCustomerLikes: GuitarSpec): void
   }
-
 }
 
 '=====================
 ' Relationships
 '=====================
+
+
 Inventory "1" o-- "*" Guitar : guitars
 Guitar "1" --> "1" GuitarSpec : spec
-
 GuitarSpec --> Builder
 GuitarSpec --> Type
 GuitarSpec --> Wood
 
+
+Loader ..|> DataLoader
+Saver  ..|> DataSaver
+JsonLoaderAdapter ..|> DataLoader
+JsonSaverAdapter  ..|> DataSaver
+
+InventoryLoader ..> DataLoader
 InventoryLoader ..> Inventory
-InventoryLoader ..> Loader
 InventoryLoader ..> GuitarSpec
-InventoryLoader ..> Builderm
+InventoryLoader ..> Builder
 InventoryLoader ..> Type
 InventoryLoader ..> Wood
 
+InventorySaver ..> DataSaver
 InventorySaver ..> Inventory
-InventorySaver ..> Saver
 InventorySaver ..> Guitar
 InventorySaver ..> GuitarSpec
 
+
+JsonLoaderAdapter o-- JsonInventoryReader
+JsonSaverAdapter  o-- JsonInventoryWriter
+JsonInventoryReader ..> JsonGuitarRecord
+JsonInventoryWriter ..> JsonGuitarRecord
+
+
 GuitarInventoryTester ..> Inventory
-GuitarInventoryTester ..> Loader
-GuitarInventoryTester ..> Saver
 GuitarInventoryTester ..> InventoryLoader
 GuitarInventoryTester ..> InventorySaver
+GuitarInventoryTester ..> DataLoader
+GuitarInventoryTester ..> DataSaver
+GuitarInventoryTester ..> Loader
+GuitarInventoryTester ..> Saver
+GuitarInventoryTester ..> JsonLoaderAdapter
+GuitarInventoryTester ..> JsonSaverAdapter
 GuitarInventoryTester ..> GuitarSpec
 GuitarInventoryTester ..> Builder
 GuitarInventoryTester ..> Type
