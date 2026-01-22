@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class InventoryLoader {
-    public static void loadInventory(Inventory inventory, Loader loader) {
+    public static void loadInventory(Inventory inventory, DataLoader loader) {
         // Notes: 
         // 1) Your work to create and use the adapter pattern should result
         //    in zero changes to the following executable code
