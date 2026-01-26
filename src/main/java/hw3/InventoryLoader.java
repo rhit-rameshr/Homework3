@@ -2,6 +2,7 @@ package hw3;
 
 import java.util.List;
 import java.util.ArrayList;
+//jsonloaderadapter has to work with this file
 
 public class InventoryLoader {
     public static void loadInventory(Inventory inventory, DataLoader loader) {
