@@ -1,4 +1,4 @@
-package main.java.hw3;
+package hw3;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ import java.io.IOException;
  * This is the text file Saver, used by InventorySaver, which is supposed 
  * to be the same for this or any other Savers used.
  */
-public class Saver {
+public class Saver implements DataSaver{
 
 	BufferedWriter writer;
 	

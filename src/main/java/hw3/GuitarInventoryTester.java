@@ -1,4 +1,4 @@
-package main.java.hw3;
+package hw3;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +96,8 @@ public class GuitarInventoryTester {
 		System.out.println(inventory);
 		// And try writing it out to a different file, for comparison:
 		String outputFileName = "guitar_inventory_output.txt";
-		Saver saver = new Saver(outputFileName, directoryName); // The text file saver
+//		Saver saver = new Saver(outputFileName, directoryName); // The text file saver
+		JsonSaverAdapter saver = new JsonSaverAdapter(outputFileName, directoryName); // The text file saver
 		InventorySaver.saveInventory(inventory, saver); // Used here by the standard inventory saver
 		System.out.println("Revised inventory written to "+outputFileName);
 	}

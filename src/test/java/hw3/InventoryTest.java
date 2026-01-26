@@ -1,4 +1,4 @@
-package test.java.hw3;
+package hw3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 
-import main.java.hw3.*;
+import hw3.*;
 
 /* A sample unit test for the following guitar found in JSON data file:
 {

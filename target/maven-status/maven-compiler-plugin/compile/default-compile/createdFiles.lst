@@ -1,0 +1,16 @@
+hw3\Wood.class
+hw3\Guitar.class
+hw3\Loader.class
+hw3\InventoryLoader.class
+hw3\GuitarSpec.class
+hw3\DataSaver.class
+hw3\JsonGuitarRecord.class
+hw3\DataLoader.class
+hw3\Saver.class
+hw3\Builder.class
+hw3\JsonSaverAdapter.class
+hw3\Inventory.class
+hw3\GuitarInventoryTester.class
+hw3\Type.class
+hw3\InventorySaver.class
+hw3\JsonInventoryWriter.class

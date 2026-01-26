@@ -1,7 +1,7 @@
-package main.java.hw3;
+package hw3;
 
 public class InventorySaver {
-	public static void saveInventory(Inventory inventory, Saver saver) {
+	public static void saveInventory(Inventory inventory, DataSaver saver) {
 		// Notes: 
         // 1) Your work to create and use the adapter pattern should result
         //    in zero changes to the following executable code
