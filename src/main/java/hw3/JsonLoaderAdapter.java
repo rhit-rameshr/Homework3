@@ -1,9 +1,9 @@
 package hw3;
-
+// Rishi
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+// Rishi
 /**
  * Adapter class that allows JSON files to be read by the InventoryLoader
  * by implementing the DataLoader interface. This adapter uses JsonInventoryReader
